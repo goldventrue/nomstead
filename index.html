@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utopia's Marketplace</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("screen-1.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #111;
+    }
+
+    .header-section {
+      background: rgba(255, 255, 255, 0.85);
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-section h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .header-section h2 {
+      margin: 0;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 1rem;
+    }
+
+    .tab {
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      background: #e5e7eb;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .tab.active[data-tab="tab1"] {
+      background-color: #d1f7d6;
+      color: #14532d;
+    }
+
+    .tab.active[data-tab="tab2"] {
+      background-color: #fddede;
+      color: #7f1d1d;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1rem;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .table-section {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      overflow-x: auto;
+    }
+
+    .filter-group {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Stile base comune per i select */
+    .filter-group select {
+      font-family: 'Inter', sans-serif;
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+      border: 1.5px solid #ccc;
+      background-color: #f9fafb;
+      color: #111;
+      font-weight: 600;
+      min-width: 140px;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Hover e focus per Buy (verde) */
+    .filter-group.buy select:hover,
+    .filter-group.buy select:focus {
+      border-color: #22c55e;  /* verde acceso buy */
+      background-color: #d1f7d6; /* verde chiaro */
+      outline: none;
+      color: #14532d;
+      box-shadow: 0 0 5px 2px rgba(34, 197, 94, 0.5);
+    }
+
+    /* Hover e focus per Sell (rosso) */
+    .filter-group.sell select:hover,
+    .filter-group.sell select:focus {
+      border-color: #ef4444; /* rosso acceso sell */
+      background-color: #fddede; /* rosso chiaro */
+      outline: none;
+      color: #7f1d1d;
+      box-shadow: 0 0 5px 2px rgba(239, 68, 68, 0.5);
+    }
+
+    table.dataTable {
+      width: 100% !important;
+      border-spacing: 0;
+    }
+
+    table.dataTable td,
+    table.dataTable th {
+      max-width: 160px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+
+    table.dataTable td:nth-child(1) img {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+    }
+
+    table.dataTable td:nth-child(8),
+    table.dataTable th:nth-child(8) {
+      max-width: 120px;
+    }
+
+    a.button.buy {
+      background-color: #22c55e;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.button.sell {
+      background-color: #ef4444;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.8);
+      margin-top: 2rem;
+    }
+	
+	/* Hover righe Buy (verde chiaro con bordo verde scuro) */
+table.dataTable.buy-row:hover {
+  background-color: #d1f7d6 !important;
+  color: #14532d !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-left: 4px solid #14532d;
+}
+
+/* Hover righe Sell (rosa chiaro con bordo rosso scuro) */
+table.dataTable.sell-row:hover {
+  background-color: #fddede !important;
+  color: #7f1d1d !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-left: 4px solid #7f1d1d;
+}
+
+/* Hover righe Buy */
+.buy-row:hover {
+  background-color: #d1f7d6 !important;
+  color: #14532d !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-left: 4px solid #14532d;
+}
+
+/* Hover righe Sell */
+.sell-row:hover {
+  background-color: #fddede !important;
+  color: #7f1d1d !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-left: 4px solid #7f1d1d;
+}
+
+.dataTables_wrapper input[type="search"] {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+  </style>
+</head>
+<body>
+  <div class="header-section">
+    <h1>UTOPIA</h1>
+    <h2><a href="https://www.nomstead.com" target="_blank">A Nomstead Marketplace</a></h2>
+    <div class="tabs">
+      <div class="tab active" data-tab="tab1">Buy items</div>
+      <div class="tab" data-tab="tab2">Sell Items</div>
+    </div>
+  </div>
+
+  <div id="tab1" class="tab-content active">
+    <div class="table-section buy">
+      <div class="filter-group buy">
+        <label for="categoryFilterBuy">Category:</label>
+        <select id="categoryFilterBuy"><option value="">All</option></select>
+        <label for="subcategoryFilterBuy">SubCat:</label>
+        <select id="subcategoryFilterBuy"><option value="">All</option></select>
+      </div>
+      <table id="toBuyTable" class="display"></table>
+    </div>
+  </div>
+
+  <div id="tab2" class="tab-content">
+    <div class="table-section sell">
+      <div class="filter-group sell">
+        <label for="categoryFilterSell">Category:</label>
+        <select id="categoryFilterSell"><option value="">All</option></select>
+        <label for="subcategoryFilterSell">SubCat:</label>
+        <select id="subcategoryFilterSell"><option value="">All</option></select>
+      </div>
+      <table id="toSellTable" class="display"></table>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Powered with ❤️ by
+      <a href="https://kingdom.so/GoldV/63481d2eb66b8f72ef07cead" target="_blank">Utopia</a>. Version: 2.0.6
+    </p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
+  <script>
+    $.fn.dataTable.ext.errMode = 'none';
+    $(document).ready(function () {
+      $('.tab').on('click', function () {
+        const tabId = $(this).data('tab');
+        $('.tab').removeClass('active');
+        $(this).addClass('active');
+        $('.tab-content').removeClass('active');
+        $('#' + tabId).addClass('active');
+      });
+
+      const apiUrl = 'https://api.nomstead.com/open/marketplace';
+
+      function createRow(item, type) {
+        return [
+          `<img src="${item.object.thumbnailImageUrl}" alt="${item.object.metadata.title}">`,
+          item.object.metadata.title,
+          item.object.category,
+          item.object.subCategory,
+          item.pricing.unitPrice || item.pricing.desiredQuantity,
+          item.pricing.availableQuantity || item.pricing.desiredQuantity,
+          `<a href="${item.tile.url}" target="_blank" class="button ${type}">${type === 'buy' ? 'Buy' : 'Sell'}</a>`,
+          item.tile.owner
+        ];
+      }
+
+      function initDataTable(tableId, data, type) {
+        if ($.fn.DataTable.isDataTable(tableId)) {
+          $(tableId).DataTable().clear().destroy();
+        }
+        $(tableId).DataTable({
+          data: data.map(item => createRow(item, type)),
+          columns: [
+            { title: "" },
+            { title: "Object" },
+            { title: "Category" },
+            { title: "SubCat" },
+            { title: "Price" },
+            { title: "Qnt" },
+            { title: "" },
+            { title: "Owner" }
+          ],
+          pageLength: 50,
+          order: [[2, 'asc'], [3, 'asc'], [4, 'asc']],
+          createdRow: function (row) {
+            $(row).addClass(type === 'buy' ? 'buy-row' : 'sell-row');
+          },
+          language: {
+            paginate: { previous: "<", next: ">" },
+            lengthMenu: "Show _MENU_ entries",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            infoFiltered: "(filtered from _MAX_ total entries)",
+            search: "Search:"
+          }
+        });
+      }
+
+      function populateFilters(data, categoryFilter, subcategoryFilter) {
+        const categories = [...new Set(data.map(item => item.object.category))];
+        const subCategories = [...new Set(data.map(item => item.object.subCategory))];
+        categoryFilter.empty().append(new Option("All", ""));
+        categories.forEach(c => categoryFilter.append(new Option(c, c)));
+        subcategoryFilter.empty().append(new Option("All", ""));
+        subCategories.forEach(sc => subcategoryFilter.append(new Option(sc, sc)));
+      }
+
+      function filterTableByCategoryAndSubcategory(tableId, categoryFilter, subcategoryFilter) {
+        const updateFilter = () => {
+          const cat = $(categoryFilter).val() || '';
+          const sub = $(subcategoryFilter).val() || '';
+          const table = $(tableId).DataTable();
+          table.columns(2).search(cat).columns(3).search(sub).draw();
+        };
+        $(categoryFilter).on('change', updateFilter);
+        $(subcategoryFilter).on('change', updateFilter);
+      }
+
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+          const sortedToBuy = data.toBuy.sort((a, b) => a.object.category.localeCompare(b.object.category));
+          const sortedToSell = data.toSell.sort((a, b) => a.object.category.localeCompare(b.object.category));
+          initDataTable('#toBuyTable', sortedToBuy, 'buy');
+          initDataTable('#toSellTable', sortedToSell, 'sell');
+          populateFilters(sortedToBuy, $('#categoryFilterBuy'), $('#subcategoryFilterBuy'));
+          populateFilters(sortedToSell, $('#categoryFilterSell'), $('#subcategoryFilterSell'));
+          filterTableByCategoryAndSubcategory('#toBuyTable', '#categoryFilterBuy', '#subcategoryFilterBuy');
+          filterTableByCategoryAndSubcategory('#toSellTable', '#categoryFilterSell', '#subcategoryFilterSell');
+        });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
