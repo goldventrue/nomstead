@@ -210,6 +210,20 @@
       color: #ffcdd2;
     }
 
+        a {
+  color: #555555; 
+  text-decoration: none; 
+}
+
+a:hover {
+  color: #333333; 
+  text-decoration: underline; 
+}
+
+    body.dark-mode a {
+  color: #555555 !important;
+}
+
     .switch {
   position: absolute;
   top: 1rem;
@@ -257,20 +271,6 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(22px);
-}
-
-    a {
-  color: #555555; 
-  text-decoration: none; 
-}
-
-a:hover {
-  color: #333333; 
-  text-decoration: underline; 
-}
-
-    body.dark-mode a {
-  color: #555555 !important;
 }
     
   </style>
