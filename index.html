@@ -358,7 +358,6 @@ body.dark-mode footer {
         $('.tab-content').removeClass('active');
         $('#' + tabId).addClass('active');
 });
-      });
 
       const apiUrl = 'https://api.nomstead.com/open/marketplace';
 
@@ -445,7 +444,7 @@ body.dark-mode footer {
 	  // Dark mode toggle
       const darkModeToggle = document.getElementById('darkModeToggle');
       darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
+        document.body.classList.toggle('dark-mode');
         // Cambia l'icona tra luna e sole
         if (document.body.classList.contains('dark')) {
           darkModeToggle.textContent = '☀️';
