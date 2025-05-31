@@ -392,24 +392,6 @@ input:checked + .slider:before {
         });
 
       document.getElementById("year").textContent = new Date().getFullYear();
-
-  const toggle = document.getElementById('darkModeToggle');
-  const body = document.body;
-
-  // Controlla lo stato iniziale dal localStorage (opzionale)
-  if(localStorage.getItem('dark-mode') === 'enabled'){
-    body.classList.add('dark-mode');
-    toggle.checked = true;
-  }
-
-  toggle.addEventListener('change', () => {
-    if(toggle.checked){
-      body.classList.add('dark-mode');
-      localStorage.setItem('dark-mode', 'enabled');
-    } else {
-      body.classList.remove('dark-mode');
-      localStorage.setItem('dark-mode', 'disabled');
-    }
     });
   </script>
 </body>
