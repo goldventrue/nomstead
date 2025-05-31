@@ -359,8 +359,6 @@ body.dark-mode footer {
         $(this).addClass('active');
         $('.tab-content').removeClass('active');
         $('#' + tabId).addClass('active');
-	      $('#darkModeToggle').on('click', function() {
-  $('body').toggleClass('dark-mode');
 });
       });
 
@@ -445,6 +443,18 @@ body.dark-mode footer {
 
       document.getElementById("year").textContent = new Date().getFullYear();
     });
+
+	  // Dark mode toggle
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        // Cambia l'icona tra luna e sole
+        if (document.body.classList.contains('dark')) {
+          darkModeToggle.textContent = '☀️';
+        } else {
+          darkModeToggle.textContent = '🌙';
+        }
+      });
   </script>
 </body>
 </html>
