@@ -11,7 +11,7 @@
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background: url("https://67fe021a4a43c1cd77aa52d7.featurebase-attachments.com/c/article/68242139b858111ba30fe4bc/0196d3ad-626c-73be-9800-b0cc3cd805a0/b64u-c2NyZWVuLTEucG5n.png?X-Amz-Expires=3600&X-Amz-Date=20250531T100000Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=DO0098AADP7QLUJN4ZLF%2F20250531%2Ffra1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=e1319f2cc645cf382c5b27c161e8e59789aef239e21c4448b74224550c2223bd") no-repeat center center fixed;
+      background: url("https://67fe021a4a43c1cd77aa52d7.featurebase-attachments.com/c/article/68242139b858111ba30fe4bc/0196d3ad-626c-73be-9800-b0cc3cd805a0/b64u-c2NyZWVuLTEucG5n.png") no-repeat center center fixed;
       background-size: cover;
       color: #111;
     }
@@ -88,7 +88,6 @@
       flex-wrap: wrap;
     }
 
-    /* Stile base comune per i select */
     .filter-group select {
       font-family: 'Inter', sans-serif;
       padding: 0.4rem 0.6rem;
@@ -102,29 +101,20 @@
       cursor: pointer;
     }
 
-    /* Hover e focus per Buy (verde) */
     .filter-group.buy select:hover,
     .filter-group.buy select:focus {
-      border-color: #22c55e;  /* verde acceso buy */
-      background-color: #d1f7d6; /* verde chiaro */
-      outline: none;
+      border-color: #22c55e;
+      background-color: #d1f7d6;
       color: #14532d;
       box-shadow: 0 0 5px 2px rgba(34, 197, 94, 0.5);
     }
 
-    /* Hover e focus per Sell (rosso) */
     .filter-group.sell select:hover,
     .filter-group.sell select:focus {
-      border-color: #ef4444; /* rosso acceso sell */
-      background-color: #fddede; /* rosso chiaro */
-      outline: none;
+      border-color: #ef4444;
+      background-color: #fddede;
       color: #7f1d1d;
       box-shadow: 0 0 5px 2px rgba(239, 68, 68, 0.5);
-    }
-
-    table.dataTable {
-      width: 100% !important;
-      border-spacing: 0;
     }
 
     table.dataTable td,
@@ -140,11 +130,6 @@
       width: 32px;
       height: 32px;
       border-radius: 4px;
-    }
-
-    table.dataTable td:nth-child(8),
-    table.dataTable th:nth-child(8) {
-      max-width: 120px;
     }
 
     a.button.buy {
@@ -172,138 +157,68 @@
       background: rgba(255, 255, 255, 0.8);
       margin-top: 2rem;
     }
-	
-	/* Hover righe Buy (verde chiaro con bordo verde scuro) */
-table.dataTable.buy-row:hover {
-  background-color: #d1f7d6 !important;
-  color: #14532d !important;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-left: 4px solid #14532d;
-}
 
-/* Hover righe Sell (rosa chiaro con bordo rosso scuro) */
-table.dataTable.sell-row:hover {
-  background-color: #fddede !important;
-  color: #7f1d1d !important;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-left: 4px solid #7f1d1d;
-}
+    .buy-row:hover {
+      background-color: #d1f7d6 !important;
+      color: #14532d !important;
+      border-left: 4px solid #14532d;
+      cursor: pointer;
+    }
 
-/* Hover righe Buy */
-.buy-row:hover {
-  background-color: #d1f7d6 !important;
-  color: #14532d !important;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-left: 4px solid #14532d;
-}
+    .sell-row:hover {
+      background-color: #fddede !important;
+      color: #7f1d1d !important;
+      border-left: 4px solid #7f1d1d;
+      cursor: pointer;
+    }
 
-/* Hover righe Sell */
-.sell-row:hover {
-  background-color: #fddede !important;
-  color: #7f1d1d !important;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-left: 4px solid #7f1d1d;
-}
+    #darkModeToggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-.dataTables_wrapper input[type="search"] {
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 400;
-  font-size: 1rem;
-}
+    body.dark-mode {
+      background: url("https://67fe021a4a43c1cd77aa52d7.featurebase-attachments.com/c/article/68242139b858111ba30fe4bc/0196d3ad-96b6-7eb3-91ca-249836b1370d/b64u-c2NyZWVuLTIucG5n.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #ddd;
+    }
 
-	  body.dark-mode {
-  background: url('https://67fe021a4a43c1cd77aa52d7.featurebase-attachments.com/c/article/68242139b858111ba30fe4bc/0196d3ad-96b6-7eb3-91ca-249836b1370d/b64u-c2NyZWVuLTIucG5n.png?X-Amz-Expires=3600&X-Amz-Date=20250531T110000Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=DO0098AADP7QLUJN4ZLF%2F20250531%2Ffra1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=0e48c861f97e236e170809cb869efcd34a6755492f44b2b46fc5fea305c743eb') no-repeat center center fixed;
-  background-size: cover;
-  color: #ddd;
-}
+    body.dark-mode .header-section,
+    body.dark-mode .table-section,
+    body.dark-mode footer {
+      background: rgba(30, 30, 30, 0.9);
+      color: #eee;
+    }
 
-body.dark-mode .header-section {
-  background: rgba(30, 30, 30, 0.9);
-  color: #eee;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+    body.dark-mode .tab {
+      background: #444;
+      color: #ccc;
+    }
 
-body.dark-mode .header-section a {
-  color: #bbb;
-  text-decoration: underline;
-}
+    body.dark-mode .tab.active[data-tab="tab1"] {
+      background-color: #2e7d32;
+      color: #a5d6a7;
+    }
 
-body.dark-mode .tabs .tab {
-  background: #444;
-  color: #ccc;
-  border-radius: 10px;
-}
+    body.dark-mode .tab.active[data-tab="tab2"] {
+      background-color: #c62828;
+      color: #ef9a9a;
+    }
 
-body.dark-mode .tabs .tab.active[data-tab="tab1"] {
-  background-color: #2e7d32; /* verde scuro */
-  color: #a5d6a7;
-}
+    body.dark-mode a.button.buy {
+      background-color: #388e3c;
+      color: #e0f2f1;
+    }
 
-body.dark-mode .tabs .tab.active[data-tab="tab2"] {
-  background-color: #c62828; /* rosso scuro */
-  color: #ef9a9a;
-}
-
-body.dark-mode .table-section {
-  background: rgba(40, 40, 40, 0.9);
-  color: #ddd;
-}
-
-body.dark-mode .filter-group select {
-  background-color: #222;
-  border-color: #555;
-  color: #ddd;
-}
-
-body.dark-mode .filter-group.buy select:hover,
-body.dark-mode .filter-group.buy select:focus {
-  border-color: #81c784;
-  background-color: #2e7d32;
-  color: #e0f2f1;
-  box-shadow: 0 0 5px 2px rgba(129, 199, 132, 0.7);
-}
-
-body.dark-mode .filter-group.sell select:hover,
-body.dark-mode .filter-group.sell select:focus {
-  border-color: #ef9a9a;
-  background-color: #b71c1c;
-  color: #ffcdd2;
-  box-shadow: 0 0 5px 2px rgba(239, 154, 154, 0.7);
-}
-
-body.dark-mode table.dataTable {
-  background-color: transparent;
-  color: #ddd;
-}
-
-body.dark-mode table.dataTable td,
-body.dark-mode table.dataTable th {
-  color: #ddd;
-}
-
-body.dark-mode a.button.buy {
-  background-color: #388e3c;
-  color: #e0f2f1;
-}
-
-body.dark-mode a.button.sell {
-  background-color: #b71c1c;
-  color: #ffcdd2;
-}
-
-body.dark-mode footer {
-  background: rgba(30, 30, 30, 0.85);
-  color: #ccc;
-}
-
-
+    body.dark-mode a.button.sell {
+      background-color: #b71c1c;
+      color: #ffcdd2;
+    }
   </style>
 </head>
 <body>
@@ -315,7 +230,9 @@ body.dark-mode footer {
       <div class="tab" data-tab="tab2">Sell Items</div>
     </div>
   </div>
+
   <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+
   <div id="tab1" class="tab-content active">
     <div class="table-section buy">
       <div class="filter-group buy">
@@ -349,16 +266,17 @@ body.dark-mode footer {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
   <script>
-    $.fn.dataTable.ext.errMode = 'none';
     $(document).ready(function () {
+      // Tab switch
       $('.tab').on('click', function () {
         const tabId = $(this).data('tab');
         $('.tab').removeClass('active');
         $(this).addClass('active');
         $('.tab-content').removeClass('active');
         $('#' + tabId).addClass('active');
-});
+      });
 
+      // Load data
       const apiUrl = 'https://api.nomstead.com/open/marketplace';
 
       function createRow(item, type) {
@@ -391,7 +309,6 @@ body.dark-mode footer {
             { title: "Owner" }
           ],
           pageLength: 50,
-          order: [[2, 'asc'], [3, 'asc'], [4, 'asc']],
           createdRow: function (row) {
             $(row).addClass(type === 'buy' ? 'buy-row' : 'sell-row');
           },
@@ -439,19 +356,14 @@ body.dark-mode footer {
         });
 
       document.getElementById("year").textContent = new Date().getFullYear();
-    });
 
-	  // Dark mode toggle
+      // Dark mode toggle
       const darkModeToggle = document.getElementById('darkModeToggle');
       darkModeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
-        // Cambia l'icona tra luna e sole
-        if (document.body.classList.contains('dark')) {
-          darkModeToggle.textContent = '☀️';
-        } else {
-          darkModeToggle.textContent = '🌙';
-        }
+        darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
       });
+    });
   </script>
 </body>
 </html>
